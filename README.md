@@ -14,15 +14,14 @@ Combines multiple svg files into one using `<symbol>` elements which you may [`<
 var svgstore = require('svgstore');
 var fs = require('fs');
 
-var sprites = svgstore();
-
-sprites.add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'));
-sprites.add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
+var sprites = svgstore()
+    .add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'))
+    .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
 
 fs.writeFileSync('./sprites.svg', sprites.toString());
 ```
 
-The resulting file may be consumed in markup as [external content](https://github.com/jonathantneal/svg4everybody).
+The resulting file may be consumed in markup as external content.
 
 ```html
 <body>
@@ -36,6 +35,12 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 ## API
 
 ### svgstore(): SvgStore
+
+Creates a container svg sprites document.
+
+### .element
+
+The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
 ### .add(id, svg): SvgStore
 
