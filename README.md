@@ -72,12 +72,12 @@ Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 
 [amazon-img]:    https://img.shields.io/badge/amazon-tip_jar-yellow.svg?style=flat-square
 [amazon-url]:    https://www.amazon.com/gp/registry/wishlist/1VQM9ID04YPC5?sort=universal-price
-[coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/handlebars-wax/master.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/shannonmoeller/handlebars-wax
-[downloads-img]: http://img.shields.io/npm/dm/handlebars-wax.svg?style=flat-square
+[coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/svgstore/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/shannonmoeller/svgstore
+[downloads-img]: http://img.shields.io/npm/dm/svgstore.svg?style=flat-square
 [gitter-img]:    http://img.shields.io/badge/gitter-join_chat-1dce73.svg?style=flat-square
 [gitter-url]:    https://gitter.im/shannonmoeller/shannonmoeller
-[npm-img]:       http://img.shields.io/npm/v/handlebars-wax.svg?style=flat-square
-[npm-url]:       https://npmjs.org/package/handlebars-wax
-[travis-img]:    http://img.shields.io/travis/shannonmoeller/handlebars-wax.svg?style=flat-square
-[travis-url]:    https://travis-ci.org/shannonmoeller/handlebars-wax
+[npm-img]:       http://img.shields.io/npm/v/svgstore.svg?style=flat-square
+[npm-url]:       https://npmjs.org/package/svgstore
+[travis-img]:    http://img.shields.io/travis/shannonmoeller/svgstore.svg?style=flat-square
+[travis-url]:    https://travis-ci.org/shannonmoeller/svgstore
