@@ -1,0 +1,11 @@
+'use strict';
+
+var svgstore = require('../src/svgstore');
+var fs = require('fs');
+
+var sprites = svgstore();
+
+sprites.add('unicorn', fs.readFileSync('./assets/unicorn.svg', 'utf8'));
+sprites.add('rainbow', fs.readFileSync('./assets/rainbow.svg', 'utf8'));
+
+fs.writeFileSync('./sprites.svg', sprites.toString());
