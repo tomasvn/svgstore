@@ -7,4 +7,4 @@ var sprites = svgstore()
 	.add('unicorn', fs.readFileSync('./assets/unicorn.svg', 'utf8'))
 	.add('rainbow', fs.readFileSync('./assets/rainbow.svg', 'utf8'));
 
-fs.writeFileSync('./sprites.svg', sprites.toString());
+fs.writeFileSync('./sprites.svg', sprites);
