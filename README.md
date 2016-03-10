@@ -18,7 +18,7 @@ var sprites = svgstore()
     .add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'))
     .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
 
-fs.writeFileSync('./sprites.svg', sprites.toString());
+fs.writeFileSync('./sprites.svg', sprites);
 ```
 
 The resulting file may be consumed in markup as external content.
