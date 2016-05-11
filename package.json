@@ -10,10 +10,7 @@
     "posttest": "nyc report -r lcov",
     "watch": "chokidar '{src,test}/**/*.js' -c 'npm test'"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shannonmoeller/svgstore.git"
-  },
+  "repository": "shannonmoeller/svgstore",
   "keywords": [
     "concat",
     "join",
