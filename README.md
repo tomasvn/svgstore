@@ -14,7 +14,7 @@ Combines multiple svg files into one using `<symbol>` elements which you may [`<
 var svgstore = require('svgstore');
 var fs = require('fs');
 
-var sprites = svgstore({cleanObjects: true})
+var sprites = svgstore()
     .add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'))
     .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
 
@@ -36,9 +36,9 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 
 ### svgstore([options]): SvgStore
 
-- `options` `Object`
-  - `cleanDefs` `{Boolean|Array}` (default: `false`) Whether to remove `style` attributes from SVG definitions, or a list of attributes to remove.
-  - `cleanObjects` `{Boolean|Array}` (default: `false`) Whether to remove `style` attributes from SVG objects, or a list of attributes to remove.
+- `options` `{Object}`
+  - `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
+  - `cleanObjects` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
 
 Creates a container svg sprites document.
 
@@ -46,10 +46,11 @@ Creates a container svg sprites document.
 
 The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
-### .add(id, svg): SvgStore
+### .add(id, svg [, options]): SvgStore
 
 - `id` `String` Unique `id` for this svg file.
 - `svg` `String` Raw source of the svg file.
+- `options` `{Object}` Same as the options given to `svgstore`, but will only apply to this svg file.
 
 Appends a file to the sprite with the given `id`.
 
