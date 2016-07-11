@@ -1,5 +1,6 @@
 'use strict';
 
+var assign = require('object-assign');
 var cheerio = require('cheerio');
 
 var ATTRIBUTE_ID = 'id';
@@ -14,11 +15,38 @@ var TEMPLATE_DOCTYPE = '<?xml version="1.0" encoding="UTF-8"?>' +
 	'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
 	'"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
+var DEFAULT_OPTIONS = {
+	cleanDefs: false,
+	cleanObjects: false
+};
+
 function load(text) {
 	return cheerio.load(text, {xmlMode: true});
 }
 
-function svgstore() {
+function clean($, el, attrs) {
+	var localAttrs = attrs;
+
+	if (typeof localAttrs === 'boolean') {
+		localAttrs = ['style'];
+	}
+
+	if (!localAttrs || !localAttrs.length) {
+		return el;
+	}
+
+	el.find('*').each(function (i, el) {
+		localAttrs.forEach(function (attr) {
+			$(el).removeAttr(attr);
+		});
+	});
+
+	return el;
+}
+
+function svgstore(options) {
+	var parentOptions = assign({}, DEFAULT_OPTIONS, options);
+
 	var parent = load(TEMPLATE_SVG);
 	var parentSvg = parent(SELECTOR_SVG);
 	var parentDefs = parent(SELECTOR_DEFS);
@@ -26,23 +54,38 @@ function svgstore() {
 	return {
 		element: parent,
 
-		add: function (id, file) {
+		add: function (id, file, options) {
 			var child = load(file);
+			var childOptions = assign({}, parentOptions, options);
+
 			var childSvg = child(SELECTOR_SVG);
 			var childDefs = child(SELECTOR_DEFS);
-			var symbol = child(TEMPLATE_SYMBOL);
+			var childSymbol = child(TEMPLATE_SYMBOL);
 
-			// merge <defs/>
+			var cleanDefs = childOptions.cleanDefs;
+			var cleanObjects = childOptions.cleanObjects;
+
+			// clean and merge <defs/>
+
+			if (cleanDefs) {
+				clean(child, childDefs, cleanDefs);
+			}
+
 			parentDefs.append(childDefs.contents());
 			childDefs.remove();
 
-			// clone <svg/> as <symbol/>
-			symbol.attr(ATTRIBUTE_ID, id);
-			symbol.attr(ATTRIBUTE_VIEW_BOX, childSvg.attr(ATTRIBUTE_VIEW_BOX));
-			symbol.append(childSvg.contents());
+			// clean and clone <svg/> as <symbol/>
+
+			if (cleanObjects) {
+				clean(child, childSvg, cleanObjects);
+			}
+
+			childSymbol.attr(ATTRIBUTE_ID, id);
+			childSymbol.attr(ATTRIBUTE_VIEW_BOX, childSvg.attr(ATTRIBUTE_VIEW_BOX));
+			childSymbol.append(childSvg.contents());
 
 			// append <symbol/>
-			parentSvg.append(symbol);
+			parentSvg.append(childSymbol);
 
 			return this;
 		},

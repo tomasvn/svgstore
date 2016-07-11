@@ -5,8 +5,7 @@
   "main": "src/svgstore.js",
   "scripts": {
     "coveralls": "nyc report -r text-lcov | coveralls",
-    "pretest": "xo src/*.js test/*.js",
-    "test": "nyc ava -v",
+    "test": "xo src/*.js test/*.js; nyc ava -v",
     "posttest": "nyc report -r lcov",
     "watch": "chokidar '{src,test}/**/*.js' -c 'npm test'"
   },
@@ -31,7 +30,8 @@
   },
   "homepage": "https://github.com/shannonmoeller/svgstore",
   "dependencies": {
-    "cheerio": "^0.20.0"
+    "cheerio": "^0.20.0",
+    "object-assign": "^4.1.0"
   },
   "devDependencies": {
     "ava": "0.15.2",
