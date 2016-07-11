@@ -14,7 +14,7 @@ Combines multiple svg files into one using `<symbol>` elements which you may [`<
 var svgstore = require('svgstore');
 var fs = require('fs');
 
-var sprites = svgstore()
+var sprites = svgstore({cleanObjects: true})
     .add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'))
     .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
 
@@ -34,7 +34,11 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 
 ## API
 
-### svgstore(): SvgStore
+### svgstore([options]): SvgStore
+
+- `options` `Object`
+  - `cleanDefs` `{Boolean|Array}` (default: `false`) Whether to remove `style` attributes from SVG definitions, or a list of attributes to remove.
+  - `cleanObjects` `{Boolean|Array}` (default: `false`) Whether to remove `style` attributes from SVG objects, or a list of attributes to remove.
 
 Creates a container svg sprites document.
 

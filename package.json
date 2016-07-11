@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/shannonmoeller/svgstore",
   "dependencies": {
-    "cheerio": "^0.20.0"
+    "cheerio": "^0.20.0",
+    "object-assign": "^4.1.0"
   },
   "devDependencies": {
     "ava": "0.15.2",

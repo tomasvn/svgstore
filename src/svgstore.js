@@ -1,5 +1,6 @@
 'use strict';
 
+var assign = require('object-assign');
 var cheerio = require('cheerio');
 
 var ATTRIBUTE_ID = 'id';
@@ -14,11 +15,34 @@ var TEMPLATE_DOCTYPE = '<?xml version="1.0" encoding="UTF-8"?>' +
 	'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
 	'"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
+var DEFAULT_OPTIONS = {
+	cleanDefs: false,
+	cleanObjects: false
+};
+
 function load(text) {
 	return cheerio.load(text, {xmlMode: true});
 }
 
-function svgstore() {
+function clean(el, attrs) {
+	var localAttrs = attrs;
+
+	if (typeof localAttrs === 'boolean') {
+		localAttrs = ['style'];
+	}
+
+	el.find('*').each(function (i, el) {
+		attrs.forEach(function (attr) {
+			el.removeAttribute(attr);
+		});
+	});
+
+	return el;
+}
+
+function svgstore(options) {
+	var globalOptions = assign({}, DEFAULT_OPTIONS, options);
+
 	var parent = load(TEMPLATE_SVG);
 	var parentSvg = parent(SELECTOR_SVG);
 	var parentDefs = parent(SELECTOR_DEFS);
@@ -26,11 +50,23 @@ function svgstore() {
 	return {
 		element: parent,
 
-		add: function (id, file) {
+		add: function (id, file, options) {
 			var child = load(file);
 			var childSvg = child(SELECTOR_SVG);
 			var childDefs = child(SELECTOR_DEFS);
 			var symbol = child(TEMPLATE_SYMBOL);
+			var localOptions = assign({}, globalOptions, options);
+
+			var cleanDefs = localOptions.cleanDefs;
+			var cleanObjects = localOptions.cleanObjects;
+
+			if (cleanDefs) {
+				clean(childDefs, cleanDefs);
+			}
+
+			if (cleanObjects) {
+				clean(childSvg, cleanObjects);
+			}
 
 			// merge <defs/>
 			parentDefs.append(childDefs.contents());

@@ -33,3 +33,33 @@ test('should combine svgs', async t => {
 
 	t.is(store.toString(), expected);
 });
+
+test('should clean defs', async t => {
+	const store = svgstore()
+		.add('foo', doctype + '<svg viewBox="0 0 100 100"><defs><linear-gradient style="fill: red;" /></defs><path/></svg>')
+		.add('bar', doctype + '<svg viewBox="0 0 200 200"><defs><radial-gradient/></defs><rect/></svg>');
+
+	const expected = doctype +
+		'<svg xmlns="http://www.w3.org/2000/svg">' +
+		'<defs><linear-gradient/><radial-gradient/></defs>' +
+		'<symbol id="foo" viewBox="0 0 100 100"><path/></symbol>' +
+		'<symbol id="bar" viewBox="0 0 200 200"><rect/></symbol>' +
+		'</svg>';
+
+	t.is(store.toString(), expected);
+});
+
+test('should clean objects', async t => {
+	const store = svgstore()
+		.add('foo', doctype + '<svg viewBox="0 0 100 100"><defs><linear-gradient/></defs><path/></svg>')
+		.add('bar', doctype + '<svg viewBox="0 0 200 200"><defs><radial-gradient/></defs><rect/></svg>');
+
+	const expected = doctype +
+		'<svg xmlns="http://www.w3.org/2000/svg">' +
+		'<defs><linear-gradient/><radial-gradient/></defs>' +
+		'<symbol id="foo" viewBox="0 0 100 100"><path/></symbol>' +
+		'<symbol id="bar" viewBox="0 0 200 200"><rect/></symbol>' +
+		'</svg>';
+
+	t.is(store.toString(), expected);
+});
