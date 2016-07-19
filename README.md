@@ -42,6 +42,8 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 
 Creates a container svg sprites document.
 
+- `options` `{Object}`: [Options for converting SVGs to symbols](#svgstore-options)
+
 ### .element
 
 The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
@@ -60,6 +62,14 @@ Appends a file to the sprite with the given `id`.
   - `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>` and `DOCTYPE`.
 
 Outputs sprite as a string of XML.
+
+## <a name="svgstore-options"></a>Options
+
+- `customSymbolAttrs` `{Array}` (default: `[]`) Custom attributes to have `svgstore` attempt to copy to the newly created `<symbol/>` tag from the root SVG.
+
+  These will be searched for in addition to `id`, `viewBox`, `aria-labelledby`, and `role`.
+
+
 
 ## Contribute
 
