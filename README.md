@@ -36,13 +36,9 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 
 ### svgstore([options]): SvgStore
 
-- `options` `{Object}`
-  - `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
-  - `cleanObjects` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
+- `options` `{Object}`: [Options for converting SVGs to symbols](#svgstore-options)
 
 Creates a container svg sprites document.
-
-- `options` `{Object}`: [Options for converting SVGs to symbols](#svgstore-options)
 
 ### .element
 
@@ -52,7 +48,7 @@ The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
 - `id` `String` Unique `id` for this svg file.
 - `svg` `String` Raw source of the svg file.
-- `options` `{Object}` Same as the options given to `svgstore`, but will only apply to this svg file.
+- `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this svg file.
 
 Appends a file to the sprite with the given `id`.
 
@@ -65,11 +61,9 @@ Outputs sprite as a string of XML.
 
 ## <a name="svgstore-options"></a>Options
 
-- `customSymbolAttrs` `{Array}` (default: `[]`) Custom attributes to have `svgstore` attempt to copy to the newly created `<symbol/>` tag from the root SVG.
-
-  These will be searched for in addition to `id`, `viewBox`, `aria-labelledby`, and `role`.
-
-
+- `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
+- `cleanObjects` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
+- `customSymbolAttrs` `{Array}` (default: `[]`) Custom attributes to have `svgstore` attempt to copy to the newly created `<symbol/>` tag from the root SVG. These will be searched for in addition to `id`, `viewBox`, `aria-labelledby`, and `role`.
 
 ## Contribute
 
