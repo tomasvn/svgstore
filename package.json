@@ -1,6 +1,6 @@
 {
   "name": "svgstore",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Combines mulitple svg files into one.",
   "main": "src/svgstore.js",
   "scripts": {
