@@ -10,7 +10,7 @@
     "posttest": "nyc report -r lcov",
     "watch": "chokidar '{src,test}/**/*.js' -d 1000 -c 'npm test'"
   },
-  "repository": "shannonmoeller/svgstore",
+  "repository": "svgstore/svgstore",
   "keywords": [
     "concat",
     "join",
@@ -27,9 +27,9 @@
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shannonmoeller/svgstore/issues"
+    "url": "https://github.com/svgstore/svgstore/issues"
   },
-  "homepage": "https://github.com/shannonmoeller/svgstore",
+  "homepage": "https://github.com/svgstore/svgstore",
   "dependencies": {
     "cheerio": "^0.22.0",
     "object-assign": "^4.1.0"
