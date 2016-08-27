@@ -13,6 +13,8 @@ function setAttributes(el, attrs) {
 	Object.keys(attrs).forEach(function (attr) {
 		var value = attrs[attr];
 
+		// Handle function values directly as cherrio passes an unhelpful index
+		// as the first argument in the native function handler.
 		if (typeof value === 'function') {
 			value = value(el.attr(attr));
 		}
