@@ -2,7 +2,7 @@
 
 var assign = require('object-assign');
 
-var load = require('./utils/load');
+var loadXml = require('./utils/load-xml');
 var removeAttributes = require('./utils/remove-attributes');
 var setAttributes = require('./utils/set-attributes');
 var svgToSymbol = require('./utils/svg-to-symbol');
@@ -27,7 +27,7 @@ function svgstore(options) {
 	var svgstoreOptions = assign({}, DEFAULT_OPTIONS, options);
 
 	// <svg>
-	var parent = load(TEMPLATE_SVG);
+	var parent = loadXml(TEMPLATE_SVG);
 	var parentSvg = parent(SELECTOR_SVG);
 	var parentDefs = parent(SELECTOR_DEFS);
 
@@ -35,7 +35,7 @@ function svgstore(options) {
 		element: parent,
 
 		add: function (id, file, options) {
-			var child = load(file);
+			var child = loadXml(file);
 			var addOptions = assign({}, svgstoreOptions, options);
 
 			// <defs>
@@ -65,7 +65,7 @@ function svgstore(options) {
 
 		toString: function (options) {
 			// Create a clone so we don't modify the parent document.
-			var clone = load(parent.xml());
+			var clone = loadXml(parent.xml());
 			var toStringOptions = assign({}, svgstoreOptions, options);
 
 			// <svg>

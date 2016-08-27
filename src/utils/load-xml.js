@@ -7,10 +7,10 @@
 
 var cheerio = require('cheerio');
 
-function load(text) {
+function loadXml(text) {
 	return cheerio.load(text, {
 		xmlMode: true
 	});
 }
 
-module.exports = load;
+module.exports = loadXml;
