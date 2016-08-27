@@ -40,23 +40,15 @@ function svgstore(options) {
 
 			// <defs>
 			var childDefs = child(SELECTOR_DEFS);
-			var cleanDefs = addOptions.cleanDefs;
 
-			if (cleanDefs) {
-				removeAttributes(childDefs, cleanDefs);
-			}
-
+			removeAttributes(childDefs, addOptions.cleanDefs);
 			parentDefs.append(childDefs.contents());
 			childDefs.remove();
 
 			// <symbol>
 			var childSymbol = svgToSymbol(id, child, addOptions);
-			var cleanSymbols = addOptions.cleanSymbols;
 
-			if (cleanSymbols) {
-				removeAttributes(childSymbol, cleanSymbols);
-			}
-
+			removeAttributes(childSymbol, addOptions.cleanSymbols);
 			setAttributes(childSymbol, addOptions.symbolAttrs);
 			parentSvg.append(childSymbol);
 

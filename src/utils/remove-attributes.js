@@ -8,7 +8,7 @@
 function removeAttributes(el, attrs) {
 	var localAttrs = attrs;
 
-	if (typeof localAttrs === 'boolean') {
+	if (localAttrs === true) {
 		localAttrs = ['style'];
 	}
 
