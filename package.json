@@ -30,14 +30,14 @@
   },
   "homepage": "https://github.com/shannonmoeller/svgstore",
   "dependencies": {
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.22.0",
     "object-assign": "^4.1.0"
   },
   "devDependencies": {
-    "ava": "0.15.2",
+    "ava": "0.16.0",
     "chokidar-cli": "^1.2.0",
-    "coveralls": "^2.11.6",
-    "nyc": "^7.0.0",
+    "coveralls": "^2.11.12",
+    "nyc": "^8.1.0",
     "xo": "^0.16"
   },
   "engines": {
