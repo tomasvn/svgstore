@@ -5,9 +5,10 @@
   "main": "src/svgstore.js",
   "scripts": {
     "coveralls": "nyc report -r text-lcov | coveralls",
-    "test": "xo src/*.js test/*.js; nyc ava -v",
+    "pretest": "xo src/*.js test/*.js",
+    "test": "nyc ava -v",
     "posttest": "nyc report -r lcov",
-    "watch": "chokidar '{src,test}/**/*.js' -c 'npm test'"
+    "watch": "chokidar '{src,test}/**/*.js' -d 1000 -c 'npm test'"
   },
   "repository": "shannonmoeller/svgstore",
   "keywords": [
