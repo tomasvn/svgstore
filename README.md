@@ -2,7 +2,7 @@
 
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
 
-Combines multiple svg files into one using `<symbol>` elements which you may [`<use>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be used in any asset pipeline.
+Combines multiple svg files into one using `<symbol>` elements which you may [`<use>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be [used in any asset pipeline](#future-goals).
 
 ## Install
 
@@ -65,13 +65,24 @@ Outputs sprite as a string of XML.
 - `cleanObjects` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
 - `customSymbolAttrs` `{Array}` (default: `[]`) Custom attributes to have `svgstore` attempt to copy to the newly created `<symbol/>` tag from the root SVG. These will be searched for in addition to `id`, `viewBox`, `aria-labelledby`, and `role`.
 
-## Contribute
+## Contributing
 
 Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
 
 ### Test
 
     $ npm test
+
+
+## Future Goals
+
+The svgstore organization began after it was noticed that the common [build task of converting an <svg> into a <symbol> tag](https://css-tricks.com/svg-symbol-good-choice-icons/) was being implemented in a similar manner by many different projects across the JavaScript ecosystem.
+
+The long-term goal for this project, in particular, is to provide a single standalone module that can be plugged in to any asset pipeline, thus allowing pipeline tools to focus on providing clean APIs and interfaces related to their build process integration, rather than implementing/duplicating SVG conversion logic directly.
+
+#### Current build tools using `svgstore`:
+
+* [broccoli-svgstore][broccoli-svgstore]
 
 ----
 
@@ -86,3 +97,4 @@ Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 [npm-url]:       https://npmjs.org/package/svgstore
 [travis-img]:    http://img.shields.io/travis/svgstore/svgstore.svg?style=flat-square
 [travis-url]:    https://travis-ci.org/svgstore/svgstore
+[broccoli-svgstore]: https://github.com/svgstore/broccoli-svgstore
