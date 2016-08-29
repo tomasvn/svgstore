@@ -30,7 +30,7 @@ The resulting file may be consumed in markup as external content.
 </body>
 ```
 
-See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/master/examples) for more detail.
+See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/master/docs/examples) for more detail.
 
 ## API
 
