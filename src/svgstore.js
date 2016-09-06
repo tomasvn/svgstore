@@ -1,52 +1,33 @@
 'use strict';
 
 var assign = require('object-assign');
-var cheerio = require('cheerio');
 
+var loadXml = require('./utils/load-xml');
+var removeAttributes = require('./utils/remove-attributes');
+var setAttributes = require('./utils/set-attributes');
 var svgToSymbol = require('./utils/svg-to-symbol');
 
-var SELECTOR_DEFS = 'defs';
 var SELECTOR_SVG = 'svg';
+var SELECTOR_DEFS = 'defs';
 
-var TEMPLATE_SVG = '<svg xmlns="http://www.w3.org/2000/svg"><defs/></svg>';
+var TEMPLATE_SVG = '<svg><defs/></svg>';
 var TEMPLATE_DOCTYPE = '<?xml version="1.0" encoding="UTF-8"?>' +
 	'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
 	'"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
 var DEFAULT_OPTIONS = {
 	cleanDefs: false,
-	cleanObjects: false,
-	customSymbolAttrs: []
+	cleanSymbols: false,
+	inline: false,
+	svgAttrs: false,
+	symbolAttrs: false
 };
 
-function load(text) {
-	return cheerio.load(text, {xmlMode: true});
-}
-
-function clean($, el, attrs) {
-	var localAttrs = attrs;
-
-	if (typeof localAttrs === 'boolean') {
-		localAttrs = ['style'];
-	}
-
-	if (!localAttrs || !localAttrs.length) {
-		return el;
-	}
-
-	el.find('*').each(function (i, el) {
-		localAttrs.forEach(function (attr) {
-			$(el).removeAttr(attr);
-		});
-	});
-
-	return el;
-}
-
 function svgstore(options) {
-	var parentOptions = assign({}, DEFAULT_OPTIONS, options);
+	var svgstoreOptions = assign({}, DEFAULT_OPTIONS, options);
 
-	var parent = load(TEMPLATE_SVG);
+	// <svg>
+	var parent = loadXml(TEMPLATE_SVG);
 	var parentSvg = parent(SELECTOR_SVG);
 	var parentDefs = parent(SELECTOR_DEFS);
 
@@ -54,41 +35,51 @@ function svgstore(options) {
 		element: parent,
 
 		add: function (id, file, options) {
-			var childOptions = assign({}, parentOptions, options);
+			var child = loadXml(file);
+			var addOptions = assign({}, svgstoreOptions, options);
 
-			var child = load(file);
+			// <defs>
 			var childDefs = child(SELECTOR_DEFS);
 
-			var cleanDefs = childOptions.cleanDefs;
-			if (cleanDefs) {
-				clean(child, childDefs, cleanDefs);
-			}
+			removeAttributes(childDefs, addOptions.cleanDefs);
 			parentDefs.append(childDefs.contents());
 			childDefs.remove();
 
-			var childSymbol = svgToSymbol(id, child, childOptions);
+			// <symbol>
+			var childSymbol = svgToSymbol(id, child, addOptions);
 
-			// clean <symbol/>
-			var cleanObjects = childOptions.cleanObjects;
-			if (cleanObjects) {
-				clean(child, childSymbol, cleanObjects);
-			}
-
-			// append <symbol/>
+			removeAttributes(childSymbol, addOptions.cleanSymbols);
+			setAttributes(childSymbol, addOptions.symbolAttrs);
 			parentSvg.append(childSymbol);
 
 			return this;
 		},
 
 		toString: function (options) {
-			var xml = parent.xml();
-			var inline = options && options.inline;
+			// Create a clone so we don't modify the parent document.
+			var clone = loadXml(parent.xml());
+			var toStringOptions = assign({}, svgstoreOptions, options);
 
-			if (!inline) {
-				return TEMPLATE_DOCTYPE + xml;
+			// <svg>
+			var svg = clone(SELECTOR_SVG);
+
+			setAttributes(svg, toStringOptions.svgAttrs);
+
+			// output inline
+			if (toStringOptions.inline) {
+				return clone.xml();
 			}
 
-			return xml;
+			// output standalone
+			svg.attr('xmlns', function (val) {
+				return val || 'http://www.w3.org/2000/svg';
+			});
+
+			svg.attr('xmlns:xlink', function (val) {
+				return val || 'http://www.w3.org/1999/xlink';
+			});
+
+			return TEMPLATE_DOCTYPE + clone.xml();
 		}
 	};
 }
