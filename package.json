@@ -25,6 +25,18 @@
     "symbols"
   ],
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
+  "maintainers": [
+    {
+      "name": "Shannon Moeller",
+      "email": "me@shannonmoeller.com",
+      "url": "https://github.com/shannonmoeller"
+    },
+    {
+      "name": "Brian Sipple",
+      "email": "bsipple57@gmail.com",
+      "url": "https://github.com/BrianSipple"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/svgstore/svgstore/issues"
