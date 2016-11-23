@@ -2,7 +2,7 @@
 
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
 
-Combines multiple SVG files into one using `\<symbol\>` elements which you may [`\<use\>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be [used in any asset pipeline](#future-goals).
+Combines multiple SVG files into one using `<symbol>` elements which you may [`<use>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be [used in any asset pipeline](#future-goals).
 
 ## Install
 
@@ -48,14 +48,14 @@ The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
 - `id` `String` Unique `id` for this SVG file.
 - `svg` `String` Raw source of the SVG file.
-- `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this SVG file's `\<symbol\>`.
+- `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this SVG file's `<symbol>`.
 
 Appends a file to the sprite with the given `id`.
 
 ### .toString([options]): String
 
 - `options` `{Object}`
-  - `inline` `{Boolean}` (default: `false`) Don't output `\<?xml ?\>` and `DOCTYPE`.
+  - `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>` and `DOCTYPE`.
 
 Outputs sprite as a string of XML.
 
@@ -63,9 +63,9 @@ Outputs sprite as a string of XML.
 
 - `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
 - `cleanObjects` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
-- `svgAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on the root `\<svg\>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
-- `symbolAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on each `\<symbol\>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
-- `copyAttrs` `{Array}` (default: false) Custom attributes to have `svgstore` attempt to copy to the newly created `\<symbol\>` tag from it's source `\<svg\>` tag. These will be searched for in addition to `viewBox`, `aria-labelledby`, and `role`.
+- `svgAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on the root `<svg>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
+- `symbolAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on each `<symbol>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
+- `copyAttrs` `{Array}` (default: false) Custom attributes to have `svgstore` attempt to copy to the newly created `<symbol>` tag from it's source `<svg>` tag. These will be searched for in addition to `viewBox`, `aria-labelledby`, and `role`.
 
 ## Contributing
 
@@ -77,7 +77,7 @@ Standards for this project, including tests, code coverage, and semantics are en
 
 ## Future Goals
 
-The svgstore organization began after it was noticed that the common [build task of converting an `\<svg\>` into a `\<symbol\>` tag](https://css-tricks.com/svg-symbol-good-choice-icons/) was being implemented in a similar manner by many different projects across the JavaScript ecosystem.
+The svgstore organization began after it was noticed that the common [build task of converting an `<svg>` into a `<symbol>` tag](https://css-tricks.com/svg-symbol-good-choice-icons/) was being implemented in a similar manner by many different projects across the JavaScript ecosystem.
 
 The long-term goal for this project, in particular, is to provide a single standalone module that can be plugged in to any asset pipeline, thus allowing pipeline tools to focus on providing clean APIs and interfaces related to their build process integration, rather than implementing/duplicating SVG conversion logic directly.
 
