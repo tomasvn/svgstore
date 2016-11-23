@@ -2,6 +2,7 @@
 
 var assign = require('object-assign');
 
+var copyAttributes = require('./utils/copy-attributes');
 var loadXml = require('./utils/load-xml');
 var removeAttributes = require('./utils/remove-attributes');
 var setAttributes = require('./utils/set-attributes');
@@ -20,7 +21,8 @@ var DEFAULT_OPTIONS = {
 	cleanSymbols: false,
 	inline: false,
 	svgAttrs: false,
-	symbolAttrs: false
+	symbolAttrs: false,
+	copyAttrs: false
 };
 
 function svgstore(options) {
@@ -46,9 +48,11 @@ function svgstore(options) {
 			childDefs.remove();
 
 			// <symbol>
+			var childSvg = child(SELECTOR_SVG);
 			var childSymbol = svgToSymbol(id, child, addOptions);
 
 			removeAttributes(childSymbol, addOptions.cleanSymbols);
+			copyAttributes(childSymbol, childSvg, addOptions.copyAttrs);
 			setAttributes(childSymbol, addOptions.symbolAttrs);
 			parentSvg.append(childSymbol);
 
