@@ -46,8 +46,8 @@ The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
 ### .add(id, svg [, options]): SvgStore
 
-- `id` `String` Unique `id` for this SVG file.
-- `svg` `String` Raw source of the SVG file.
+- `id` `{String}` Unique `id` for this SVG file.
+- `svg` `{String}` Raw source of the SVG file.
 - `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this SVG file's `<symbol>`.
 
 Appends a file to the sprite with the given `id`.
