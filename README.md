@@ -100,3 +100,4 @@ Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 [travis-img]:    http://img.shields.io/travis/svgstore/svgstore.svg?style=flat-square
 [travis-url]:    https://travis-ci.org/svgstore/svgstore
 [broccoli-svgstore]: https://github.com/svgstore/broccoli-svgstore
+[svgstore-cli]: https://github.com/svgstore/svgstore-cli
