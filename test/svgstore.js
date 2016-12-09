@@ -121,8 +121,8 @@ test('should attempt to preserve the `viewBox`, `aria-labelledby`, and `role` at
 });
 
 test('should support custom attribute preservation, on top of the defaults', async t => {
-	const customSymbolAttrs = ['preserveAspectRatio', 'take-me-too'];
-	const store = svgstore({customSymbolAttrs})
+	const copyAttrs = ['preserveAspectRatio', 'take-me-too', 'role'];
+	const store = svgstore({copyAttrs})
 		.add('corge', FIXTURE_SVGS.corge);
 
 	const expected = doctype +
