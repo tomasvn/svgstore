@@ -55,7 +55,7 @@ Appends a file to the sprite with the given `id`.
 ### .toString([options]): String
 
 - `options` `{Object}`
-  - `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>` and `DOCTYPE`.
+  - `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>`, `DOCTYPE`, and the `xmlns` attribute.
 
 Outputs sprite as a string of XML.
 
