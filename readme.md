@@ -1,4 +1,4 @@
-# `svgstore`
+# svgstore
 
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
 
@@ -88,9 +88,7 @@ The long-term goal for this project, in particular, is to provide a single stand
 
 ----
 
-© Shannon Moeller <me@shannonmoeller.com> (shannonmoeller.com)
-
-Licensed under [MIT](http://shannonmoeller.com/mit.txt)
+MIT © [Shannon Moeller](http://shannonmoeller.com)
 
 [coveralls-img]: http://img.shields.io/coveralls/svgstore/svgstore/master.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/svgstore/svgstore
