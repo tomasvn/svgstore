@@ -15,7 +15,8 @@ const FIXTURE_SVGS = {
 	qux: '<svg viewBox="0 0 200 200"><defs><radial-gradient style="stroke: red;" fill="blue"/></defs><rect style="stroke: red;" fill="blue"/></svg>',
 	quux: '<svg viewBox="0 0 200 200" aria-labelledby="titleId" role="img"><title id="titleId">A boxy shape</title><rect/></svg>',
 	corge: '<svg viewBox="0 0 200 200" aria-labelledby="titleId" role="img" preserveAspectRatio="xMinYMax" take-me-too="foo" count-me-out="bar">' +
-		'<title id="titleId">A boxy shape</title><rect/></svg>'
+		'<title id="titleId">A boxy shape</title><rect/></svg>',
+	defsWithId: '<svg viewBox="0 0 100 100"><defs><linear-gradient id="a" style="fill: red;"/></defs><path style="fill: red;"/><use xlink:href="#a"></use></svg>'
 };
 
 test('should create an svg document', async t => {
@@ -183,6 +184,29 @@ test('should set svg attributes', async t => {
 		'</defs>' +
 		'<symbol id="foo" viewBox="0 0 100 100"><path style="fill: red;"/></symbol>' +
 		'<symbol id="bar" viewBox="0 0 200 200"><rect style="stroke: red;"/></symbol>' +
+		'</svg>';
+
+	t.is(store.toString(), expected);
+});
+
+test('should rename defs id', async t => {
+	const options = {
+		inline: true,
+		svgAttrs: {
+			id: 'spritesheet',
+			style: 'display: none'
+		},
+		renameDefs: true
+	};
+
+	const store = svgstore(options)
+		.add('defsWithId', doctype + FIXTURE_SVGS.defsWithId);
+
+	const expected = '<svg id="spritesheet" style="display: none">' +
+		'<defs>' +
+		'<linear-gradient id="defsWithId_a" style="fill: red;"/>' +
+		'</defs>' +
+		'<symbol id="defsWithId" viewBox="0 0 100 100"><path style="fill: red;"/><use xlink:href="#defsWithId_a"/></symbol>' +
 		'</svg>';
 
 	t.is(store.toString(), expected);
