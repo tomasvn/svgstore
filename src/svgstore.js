@@ -22,7 +22,8 @@ var DEFAULT_OPTIONS = {
 	inline: false,
 	svgAttrs: false,
 	symbolAttrs: false,
-	copyAttrs: false
+	copyAttrs: false,
+	renameDefs: false
 };
 
 function svgstore(options) {
@@ -44,6 +45,23 @@ function svgstore(options) {
 			var childDefs = child(SELECTOR_DEFS);
 
 			removeAttributes(childDefs, addOptions.cleanDefs);
+
+			/* rename defs ids */
+			if (addOptions.renameDefs) {
+				childDefs.children().each(function (i, _elem) {
+					var elem = child(_elem);
+					var oldDefId = elem.attr('id');
+					var newDefId = id + '_' + oldDefId;
+					elem.attr('id', newDefId);
+					child('use').each(function (i, use) {
+						if (child(use).prop('xlink:href') !== '#' + oldDefId) {
+							return;
+						}
+						child(use).attr('xlink:href', '#' + newDefId);
+					});
+				});
+			}
+
 			parentDefs.append(childDefs.contents());
 			childDefs.remove();
 
