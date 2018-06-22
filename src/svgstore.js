@@ -53,11 +53,18 @@ function svgstore(options) {
 					var oldDefId = elem.attr('id');
 					var newDefId = id + '_' + oldDefId;
 					elem.attr('id', newDefId);
+
+					/* process use tags */
 					child('use').each(function (i, use) {
 						if (child(use).prop('xlink:href') !== '#' + oldDefId) {
 							return;
 						}
 						child(use).attr('xlink:href', '#' + newDefId);
+					});
+
+					/* process fill attributes */
+					child('[fill="url(#' + oldDefId + ')"]').each(function (i, use) {
+						child(use).attr('fill', 'url(#' + newDefId + ')');
 					});
 				});
 			}
