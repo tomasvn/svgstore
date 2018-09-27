@@ -1,11 +1,10 @@
 {
   "name": "svgstore",
-  "version": "3.0.0-0",
+  "version": "3.0.0-1",
   "description": "Combines mulitple svg files into one.",
   "main": "src/svgstore.js",
   "scripts": {
     "coveralls": "nyc report -r text-lcov | coveralls",
-    "pretest": "xo src/*.js test/*.js",
     "test": "nyc ava -v",
     "posttest": "nyc report -r lcov",
     "watch": "chokidar '{src,test}/**/*.js' -d 1000 -c 'npm test'"
@@ -44,14 +43,13 @@
   "homepage": "https://github.com/svgstore/svgstore",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "object-assign": "^4.1.0"
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
-    "ava": "0.16.0",
-    "chokidar-cli": "^1.2.0",
-    "coveralls": "^2.11.12",
-    "nyc": "^8.1.0",
-    "xo": "^0.16"
+    "ava": "0.25.0",
+    "chokidar-cli": "^1.2.1",
+    "coveralls": "^3.0.2",
+    "nyc": "^13.0.1"
   },
   "engines": {
     "node": ">= 0.12"
