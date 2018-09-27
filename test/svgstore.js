@@ -16,7 +16,7 @@ const FIXTURE_SVGS = {
 	quux: '<svg viewBox="0 0 200 200" aria-labelledby="titleId" role="img"><title id="titleId">A boxy shape</title><rect/></svg>',
 	corge: '<svg viewBox="0 0 200 200" aria-labelledby="titleId" role="img" preserveAspectRatio="xMinYMax" take-me-too="foo" count-me-out="bar">' +
 		'<title id="titleId">A boxy shape</title><rect/></svg>',
-	defsWithId: '<svg viewBox="0 0 100 100"><defs><linear-gradient id="a" style="fill: red;"/></defs><path style="fill: red;"/><use xlink:href="#a"></use></svg>'
+	defsWithId: '<svg><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="a"><stop stop-color="#FFF" offset="0%"/><stop stop-color="#F0F0F0" offset="100%"/></linearGradient><path id="b" d=""/></defs><path fill="url(#a)" fill-rule="nonzero" d=""/><use xlink:href="#b"></use><use fill-rule="nonzero" xlink:href="#b"></use><path fill="url(#a)" fill-rule="nonzero" d=""/></svg>'
 };
 
 test('should create an svg document', async t => {
@@ -192,21 +192,26 @@ test('should set svg attributes', async t => {
 test('should rename defs id', async t => {
 	const options = {
 		inline: true,
-		svgAttrs: {
-			id: 'spritesheet',
-			style: 'display: none'
-		},
 		renameDefs: true
 	};
 
 	const store = svgstore(options)
-		.add('defsWithId', doctype + FIXTURE_SVGS.defsWithId);
+		.add('defs_with_id', doctype + FIXTURE_SVGS.defsWithId);
 
-	const expected = '<svg id="spritesheet" style="display: none">' +
+	const expected = '<svg>' +
 		'<defs>' +
-		'<linear-gradient id="defsWithId_a" style="fill: red;"/>' +
+		'<linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="defs_with_id_a">' +
+		'<stop stop-color="#FFF" offset="0%"/>' +
+		'<stop stop-color="#F0F0F0" offset="100%"/>' +
+		'</linearGradient>' +
+		'<path id="defs_with_id_b" d=""/>' +
 		'</defs>' +
-		'<symbol id="defsWithId" viewBox="0 0 100 100"><path style="fill: red;"/><use xlink:href="#defsWithId_a"/></symbol>' +
+		'<symbol id="defs_with_id">' +
+		'<path fill="url(#defs_with_id_a)" fill-rule="nonzero" d=""/>' +
+		'<use xlink:href="#defs_with_id_b"/>' +
+		'<use fill-rule="nonzero" xlink:href="#defs_with_id_b"/>' +
+		'<path fill="url(#defs_with_id_a)" fill-rule="nonzero" d=""/>' +
+		'</symbol>' +
 		'</svg>';
 
 	t.is(store.toString(), expected);
