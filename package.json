@@ -4,7 +4,8 @@
   "description": "Combines mulitple svg files into one.",
   "scripts": {
     "lint": "npx eslint --fix \"{src,test}/**/*.js\" && npx prettier --write \"{src,test}/**/*.js\"",
-    "test": "node test/svgstore.js"
+    "test": "node test/svgstore.js",
+    "cover": "npx c8 npm test"
   },
   "keywords": [
     "concat",
