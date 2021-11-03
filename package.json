@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/svgstore/svgstore",
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "v1.0.0-rc.10",
     "object-assign": "^4.1.1"
   },
   "devDependencies": {
