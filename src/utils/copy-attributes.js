@@ -4,11 +4,7 @@
 
 'use strict';
 
-var ALWAYS_COPY_ATTRS = [
-	'viewBox',
-	'aria-labelledby',
-	'role',
-];
+var ALWAYS_COPY_ATTRS = ['viewBox', 'aria-labelledby', 'role'];
 
 function copyAttributes(a, b, attrs) {
 	var attrsToCopy = ALWAYS_COPY_ATTRS.concat(attrs || []);

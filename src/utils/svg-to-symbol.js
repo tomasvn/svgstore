@@ -12,11 +12,10 @@ var ATTRIBUTE_ID = 'id';
 /**
  * @param {string} id The id to be applied to the symbol tag
  * @param {string} child An object created by loading the content of the current file via the cheerio#load function.
- * @param {object} options for parsing the svg content
  * @return {object} symbol The final cheerio-aware object created by cloning the SVG contents
  * @see <a href="https://github.com/cheeriojs/cheerio">The Cheerio Project</a>
  */
-function svgToSymbol(id, child, options) {
+function svgToSymbol(id, child) {
 	var svgElem = child(SELECTOR_SVG);
 
 	// initialize a new <symbol> element

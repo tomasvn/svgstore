@@ -1,6 +1,6 @@
 # svgstore
 
-[![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
+[![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url]
 
 Combines multiple SVG files into one using `<symbol>` elements which you may [`<use>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be [used in any asset pipeline](#future-goals).
 
@@ -91,12 +91,8 @@ The long-term goal for this project, in particular, is to provide a single stand
 
 MIT © [Shannon Moeller](http://shannonmoeller.com)
 
-[coveralls-img]: http://img.shields.io/coveralls/svgstore/svgstore/master.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/svgstore/svgstore
 [downloads-img]: http://img.shields.io/npm/dm/svgstore.svg?style=flat-square
 [npm-img]:       http://img.shields.io/npm/v/svgstore.svg?style=flat-square
 [npm-url]:       https://npmjs.org/package/svgstore
-[travis-img]:    http://img.shields.io/travis/svgstore/svgstore.svg?style=flat-square
-[travis-url]:    https://travis-ci.org/svgstore/svgstore
 [broccoli-svgstore]: https://github.com/svgstore/broccoli-svgstore
 [svgstore-cli]: https://github.com/svgstore/svgstore-cli

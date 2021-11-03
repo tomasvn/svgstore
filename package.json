@@ -2,14 +2,10 @@
   "name": "svgstore",
   "version": "3.0.0-2",
   "description": "Combines mulitple svg files into one.",
-  "main": "src/svgstore.js",
   "scripts": {
-    "coveralls": "nyc report -r text-lcov | coveralls",
-    "test": "nyc ava -v",
-    "posttest": "nyc report -r lcov",
-    "watch": "chokidar '{src,test}/**/*.js' -d 1000 -c 'npm test'"
+    "lint": "npx eslint --fix \"{src,test}/**/*.js\" && npx prettier --write \"{src,test}/**/*.js\"",
+    "test": "node test/svgstore.js"
   },
-  "repository": "svgstore/svgstore",
   "keywords": [
     "concat",
     "join",
@@ -36,22 +32,26 @@
       "url": "https://github.com/BrianSipple"
     }
   ],
+  "homepage": "https://github.com/svgstore/svgstore#readme",
+  "repository": "svgstore/svgstore",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/svgstore/svgstore/issues"
-  },
-  "homepage": "https://github.com/svgstore/svgstore",
+  "main": "src/svgstore.js",
   "dependencies": {
-    "cheerio": "v1.0.0-rc.10",
-    "object-assign": "^4.1.1"
-  },
-  "devDependencies": {
-    "ava": "0.25.0",
-    "chokidar-cli": "^1.2.1",
-    "coveralls": "^3.0.2",
-    "nyc": "^13.0.1"
+    "cheerio": "v1.0.0-rc.10"
   },
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 12"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8
+    }
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

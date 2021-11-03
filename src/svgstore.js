@@ -1,7 +1,5 @@
 'use strict';
 
-var assign = require('object-assign');
-
 var copyAttributes = require('./utils/copy-attributes');
 var loadXml = require('./utils/load-xml');
 var removeAttributes = require('./utils/remove-attributes');
@@ -12,7 +10,8 @@ var SELECTOR_SVG = 'svg';
 var SELECTOR_DEFS = 'defs';
 
 var TEMPLATE_SVG = '<svg><defs/></svg>';
-var TEMPLATE_DOCTYPE = '<?xml version="1.0" encoding="UTF-8"?>' +
+var TEMPLATE_DOCTYPE =
+	'<?xml version="1.0" encoding="UTF-8"?>' +
 	'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" ' +
 	'"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
@@ -23,11 +22,11 @@ var DEFAULT_OPTIONS = {
 	svgAttrs: false,
 	symbolAttrs: false,
 	copyAttrs: false,
-	renameDefs: false
+	renameDefs: false,
 };
 
 function svgstore(options) {
-	var svgstoreOptions = assign({}, DEFAULT_OPTIONS, options);
+	var svgstoreOptions = Object.assign({}, DEFAULT_OPTIONS, options);
 
 	// <svg>
 	var parent = loadXml(TEMPLATE_SVG);
@@ -39,7 +38,7 @@ function svgstore(options) {
 
 		add: function (id, file, options) {
 			var child = loadXml(file);
-			var addOptions = assign({}, svgstoreOptions, options);
+			var addOptions = Object.assign({}, svgstoreOptions, options);
 
 			// <defs>
 			var childDefs = child(SELECTOR_DEFS);
@@ -73,7 +72,10 @@ function svgstore(options) {
 					});
 
 					/* process fill attributes */
-					child('[fill="url(#' + oldDefId + ')"]').each(function (i, use) {
+					child('[fill="url(#' + oldDefId + ')"]').each(function (
+						i,
+						use
+					) {
 						child(use).attr('fill', 'url(#' + newDefId + ')');
 					});
 				});
@@ -97,7 +99,7 @@ function svgstore(options) {
 		toString: function (options) {
 			// Create a clone so we don't modify the parent document.
 			var clone = loadXml(parent.xml());
-			var toStringOptions = assign({}, svgstoreOptions, options);
+			var toStringOptions = Object.assign({}, svgstoreOptions, options);
 
 			// <svg>
 			var svg = clone(SELECTOR_SVG);
@@ -119,7 +121,7 @@ function svgstore(options) {
 			});
 
 			return TEMPLATE_DOCTYPE + clone.xml();
-		}
+		},
 	};
 }
 
