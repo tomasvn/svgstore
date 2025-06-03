@@ -1,6 +1,6 @@
 {
   "name": "@tomasvn/svgstore",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Combines mulitple svg files into one.",
   "scripts": {
     "lint": "npx eslint --fix \"{src,test}/**/*.js\" && npx prettier --write \"{src,test}/**/*.js\"",
