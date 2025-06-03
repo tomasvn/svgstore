@@ -39,7 +39,6 @@ var DEFAULT_OPTIONS = {
 	renameDefs: false,
 	fragmentIdentifier: null,
 	processGradient: false,
-	log: true,
 };
 
 /**

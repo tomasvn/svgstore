@@ -8,3 +8,7 @@
 
 # 3.1.2
     - update readme file
+
+# 3.1.3
+    - add safe clean `def` util
+    - passing `opts`, `cleanDefs: true` would break `linearGradient`
