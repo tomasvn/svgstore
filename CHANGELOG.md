@@ -5,3 +5,6 @@
 
 # 3.1.1
     - parsing of `linearGradient` elements
+
+# 3.1.2
+    - update readme file
