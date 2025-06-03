@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs/><symbol id="unicorn" viewBox="0 0 64 64">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs>
+    <linearGradient id="gradient__grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff7e5f; stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#feb47b; stop-opacity:1"/>
+    </linearGradient>
+  </defs><symbol id="unicorn" viewBox="0 0 64 64">
 <g>
 	<g>
 		<g>
@@ -102,4 +107,7 @@
 			c-0.14-0.08-0.281-0.156-0.425-0.229c0-0.022,0-0.044,0-0.066C37.575,38.442,32.79,33.684,26.907,33.684L26.907,33.684z"/>
 	</g>
 </g>
-</symbol><view id="view-rainbow" viewBox="0 64 64 64"/><use xlink:href="#rainbow" width="64" height="64" x="0" y="64"/></svg>
+</symbol><view id="view-rainbow" viewBox="0 64 64 64"/><use xlink:href="#rainbow" width="64" height="64" x="0" y="64"/><symbol id="gradient" viewBox="0 0 100 100">
+  
+  <circle cx="50" cy="50" r="40" fill="url(#gradient__grad1)"/>
+</symbol><view id="view-gradient" viewBox="0 128 100 100"/><use xlink:href="#gradient" width="100" height="100" x="0" y="128"/></svg>

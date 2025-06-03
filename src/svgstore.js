@@ -49,7 +49,39 @@ function svgstore(options) {
 
 			removeAttributes(childDefs, addOptions.cleanDefs);
 
-			/* rename defs ids */
+			var linearGradients = childDefs.find('linearGradient');
+			if (linearGradients.length) {
+				linearGradients.each(function (i, elem) {
+					var $elem = child(elem);
+					var oldId = $elem.attr('id');
+					if (!oldId) return;
+
+					var newId = id + '__' + oldId;
+					$elem.attr('id', newId);
+
+					// Update references in fill, stroke, filter, style attributes
+					child('[fill], [stroke], [filter], [style]').each(function (
+						i,
+						refElem
+					) {
+						var $refElem = child(refElem);
+						['fill', 'stroke', 'filter', 'style'].forEach(function (
+							attr
+						) {
+							var val = $refElem.attr(attr);
+							if (val && val.includes('url(#' + oldId + ')')) {
+								var newVal = val.replace(
+									new RegExp('url\\(#' + oldId + '\\)', 'g'),
+									'url(#' + newId + ')'
+								);
+								$refElem.attr(attr, newVal);
+							}
+						});
+					});
+				});
+			}
+
+			/* rename defs ids (existing original logic) */
 			if (addOptions.renameDefs) {
 				childDefs.children().each(function (i, _elem) {
 					var elem = child(_elem);

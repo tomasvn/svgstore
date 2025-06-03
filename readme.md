@@ -4,9 +4,15 @@
 
 Combines multiple SVG files into one using `<symbol>` elements which you may [`<use>` in your markup](https://css-tricks.com/svg-sprites-use-better-icon-fonts/). Heavily inspired by [`grunt-svgstore`](https://github.com/FWeinb/grunt-svgstore) and [`gulp-svgstore`](https://github.com/w0rm/gulp-svgstore), this is a standalone module that may be [used in any asset pipeline](#future-goals).
 
+## NOTE
+
+-   This is only a fork of original work, it implements this [PR #33](https://github.com/svgstore/svgstore/pull/33) from original work
+-   Adds linear gradient proccessing
+-   **NOT MAINTAINED**
+
 ## Install
 
-    $ npm install --save svgstore
+    $ npm install --save @tomasvn/svgstore
 
 ## Usage
 
@@ -16,7 +22,8 @@ var fs = require('fs');
 
 var sprites = svgstore()
     .add('unicorn', fs.readFileSync('./unicorn.svg', 'utf8'))
-    .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'));
+    .add('rainbow', fs.readFileSync('./rainbow.svg', 'utf8'))
+    .add('gradient', fs.readFileSync('./gradient.svg', 'utf8'));
 
 fs.writeFileSync('./sprites.svg', sprites);
 ```
@@ -27,6 +34,7 @@ The resulting file may be consumed in markup as external content.
 <body>
     <svg role="img"><use xlink:href="./sprites.svg#unicorn" /></svg>
     <svg role="img"><use xlink:href="./sprites.svg#rainbow" /></svg>
+    <svg role="img"><use xlink:href="./sprites.svg#gradient" /></svg>
 </body>
 ```
 
