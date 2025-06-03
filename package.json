@@ -1,6 +1,6 @@
 {
-  "name": "svgstore",
-  "version": "3.0.1",
+  "name": "@tomasvn/svgstore",
+  "version": "3.1.0",
   "description": "Combines mulitple svg files into one.",
   "scripts": {
     "lint": "npx eslint --fix \"{src,test}/**/*.js\" && npx prettier --write \"{src,test}/**/*.js\"",
@@ -38,7 +38,8 @@
   "license": "MIT",
   "main": "src/svgstore.js",
   "dependencies": {
-    "cheerio": "v1.0.0-rc.10"
+    "cheerio": "v1.0.0-rc.10",
+    "@resvg/resvg-js": "^2.1.0"
   },
   "engines": {
     "node": ">= 12"

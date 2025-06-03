@@ -10,7 +10,7 @@
 			padding: 12%;
 			text-align: center;
 		}
-		svg {
+		svg, img {
 			display: inline-block;
 			height: 12em;
 			width: 12em;
@@ -27,9 +27,15 @@
 
 </head>
 <body>
-
-	<svg role="img"><use xlink:href="./sprites.svg#unicorn" /></svg>
-	<svg role="img"><use xlink:href="./sprites.svg#rainbow" /></svg>
+	<svg role="img">
+		<use href="./sprites.svg#unicorn" />
+	</svg>
+	<svg role="img">
+		<use href="./sprites.svg#rainbow" />
+	</svg>
+	<br>
+	<img src="./sprites.svg#view-unicorn">
+	<img src="./sprites.svg#view-rainbow">
 
 	<p><small>Icons by <a href="http://emojione.com/">Emoji One</a></small></p>
 

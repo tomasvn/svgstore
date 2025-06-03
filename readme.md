@@ -25,8 +25,8 @@ The resulting file may be consumed in markup as external content.
 
 ```html
 <body>
-    <svg role="img"><use xlink:href="./sprites.svg#unicorn"/></svg>
-    <svg role="img"><use xlink:href="./sprites.svg#rainbow"/></svg>
+    <svg role="img"><use xlink:href="./sprites.svg#unicorn" /></svg>
+    <svg role="img"><use xlink:href="./sprites.svg#rainbow" /></svg>
 </body>
 ```
 
@@ -36,7 +36,7 @@ See the [examples directory](https://github.com/shannonmoeller/svgstore/tree/mas
 
 ### svgstore([options]): SvgStore
 
-- `options` `{Object}`: [Options for converting SVGs to symbols](#svgstore-options)
+-   `options` `{Object}`: [Options for converting SVGs to symbols](#svgstore-options)
 
 Creates a container SVG sprites document.
 
@@ -46,27 +46,28 @@ The current [cheerio](https://github.com/cheeriojs/cheerio) instance.
 
 ### .add(id, svg [, options]): SvgStore
 
-- `id` `{String}` Unique `id` for this SVG file.
-- `svg` `{String}` Raw source of the SVG file.
-- `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this SVG file's `<symbol>`.
+-   `id` `{String}` Unique `id` for this SVG file.
+-   `svg` `{String}` Raw source of the SVG file.
+-   `options` `{Object}` Same as the [options of `svgstore()`](#svgstore-options), but will only apply to this SVG file's `<symbol>`.
 
 Appends a file to the sprite with the given `id`.
 
 ### .toString([options]): String
 
-- `options` `{Object}`
-  - `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>`, `DOCTYPE`, and the `xmlns` attribute.
+-   `options` `{Object}`
+    -   `inline` `{Boolean}` (default: `false`) Don't output `<?xml ?>`, `DOCTYPE`, and the `xmlns` attribute.
 
 Outputs sprite as a string of XML.
 
 ## <a name="svgstore-options"></a>Options
 
-- `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
-- `cleanSymbols` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
-- `svgAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on the root `<svg>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
-- `symbolAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on each `<symbol>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
-- `copyAttrs` `{Boolean|Array}` (default: `false`) Attributes to have `svgstore` attempt to copy to the newly created `<symbol>` tag from it's source `<svg>` tag. The `viewBox`, `aria-labelledby`, and `role` attributes are always copied.
-- `renameDefs` `{Boolean}` (default: `false`) Rename `defs` content ids to make them inherit files' names so that it would help to avoid defs with same ids in the output file.
+-   `cleanDefs` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG definitions, or a list of attributes to remove.
+-   `cleanSymbols` `{Boolean|Array}` (default: `false`) Remove `style` attributes from SVG objects, or a list of attributes to remove.
+-   `svgAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on the root `<svg>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
+-   `symbolAttrs` `{Boolean|Object}` (default: `false`) A map of attributes to set on each `<symbol>` element. If you set an attribute's value to null, you remove that attribute. Values may be functions like jQuery.
+-   `copyAttrs` `{Boolean|Array}` (default: `false`) Attributes to have `svgstore` attempt to copy to the newly created `<symbol>` tag from it's source `<svg>` tag. The `viewBox`, `aria-labelledby`, and `role` attributes are always copied.
+-   `renameDefs` `{Boolean}` (default: `false`) Rename `defs` content ids to make them inherit files' names so that it would help to avoid defs with same ids in the output file.
+-   `fragmentIdentifier` `{Function}` (default: `null`) Enable [SVG Fragment Identifiers](https://css-tricks.com/svg-fragment-identifiers-work/) to allow the use of `<img src="icons.svg#unicorn-view" />`. You can custom fragment ID like `(id) => 'view-' + id`
 
 ## Contributing
 
@@ -84,15 +85,15 @@ The long-term goal for this project, in particular, is to provide a single stand
 
 #### Current build tools using `svgstore`:
 
-* [broccoli-svgstore][broccoli-svgstore]
-* [svgstore-cli][svgstore-cli]
+-   [broccoli-svgstore][broccoli-svgstore]
+-   [svgstore-cli][svgstore-cli]
 
-----
+---
 
 MIT © [Shannon Moeller](http://shannonmoeller.com)
 
 [downloads-img]: http://img.shields.io/npm/dm/svgstore.svg?style=flat-square
-[npm-img]:       http://img.shields.io/npm/v/svgstore.svg?style=flat-square
-[npm-url]:       https://npmjs.org/package/svgstore
+[npm-img]: http://img.shields.io/npm/v/svgstore.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/svgstore
 [broccoli-svgstore]: https://github.com/svgstore/broccoli-svgstore
 [svgstore-cli]: https://github.com/svgstore/svgstore-cli
