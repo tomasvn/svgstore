@@ -231,6 +231,71 @@ test('should rename defs id', async (t) => {
 	t.strictEqual(store.toString(), expected);
 });
 
+test('should update all references to renamed defs ids', async (t) => {
+	const svg =
+		'<svg><defs>' +
+		'<linearGradient id="paint0"/>' +
+		'<linearGradient id="paint1" href="#paint0"/>' +
+		'<clipPath id="clip0"/>' +
+		'<mask id="mask0"/>' +
+		'<filter id="filter0"/>' +
+		'<marker id="marker0"/>' +
+		'</defs>' +
+		'<g clip-path="url(#clip0)" mask="url(#mask0)" filter="url(#filter0)" ' +
+		'marker-start="url(#marker0)" marker-mid="url(#marker0)" ' +
+		'marker-end="url(#marker0)">' +
+		'<path fill="url(#paint0)" stroke="url(#paint0)" ' +
+		'style="fill:url(#paint0);stroke:url(#paint0)"/>' +
+		'</g></svg>';
+	const output = svgstore({ inline: true, renameDefs: true })
+		.add('icon', svg)
+		.toString();
+
+	[
+		'href="#icon_paint0"',
+		'clip-path="url(#icon_clip0)"',
+		'mask="url(#icon_mask0)"',
+		'filter="url(#icon_filter0)"',
+		'marker-start="url(#icon_marker0)"',
+		'marker-mid="url(#icon_marker0)"',
+		'marker-end="url(#icon_marker0)"',
+		'fill="url(#icon_paint0)"',
+		'stroke="url(#icon_paint0)"',
+		'style="fill:url(#icon_paint0);stroke:url(#icon_paint0)"',
+	].forEach((reference) => {
+		t.ok(output.includes(reference), `expected output to include ${reference}`);
+	});
+});
+
+test('should match the renameDefs issue reproduction', async (t) => {
+	const icon =
+		'<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+		'<g clip-path="url(#clip0)"><path d="M0 12h24" stroke="url(#paint0)" stroke-width="4"/></g>' +
+		'<defs>' +
+		'<linearGradient id="paint0" x2="24" gradientUnits="userSpaceOnUse">' +
+		'<stop stop-color="red"/><stop offset="1" stop-color="blue"/>' +
+		'</linearGradient>' +
+		'<clipPath id="clip0"><rect width="12" height="24"/></clipPath>' +
+		'</defs></svg>';
+
+	const output = svgstore({ renameDefs: true })
+		.add('icon', icon)
+		.toString({ inline: true });
+
+	const expected =
+		'<svg><defs>' +
+		'<linearGradient id="icon_paint0" x2="24" gradientUnits="userSpaceOnUse">' +
+		'<stop stop-color="red"/><stop offset="1" stop-color="blue"/>' +
+		'</linearGradient>' +
+		'<clipPath id="icon_clip0"><rect width="12" height="24"/></clipPath>' +
+		'</defs>' +
+		'<symbol id="icon" viewBox="0 0 24 24">' +
+		'<g clip-path="url(#icon_clip0)"><path d="M0 12h24" stroke="url(#icon_paint0)" stroke-width="4"/></g>' +
+		'</symbol></svg>';
+
+	t.strictEqual(output, expected);
+});
+
 test('should add <view/> and <use/> to enable SVG Fragment Identifiers', async (t) => {
 	const store = svgstore({ fragmentIdentifier: (id) => `view-${id}` })
 		.add('foo', doctype + FIXTURE_SVGS.foo.replace('<svg', svgNs.slice(0, -1)))

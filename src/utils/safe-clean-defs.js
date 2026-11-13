@@ -1,7 +1,6 @@
 function safeCleanDefsAttrs(attrs) {
 	if (attrs === true) {
-		// Default to removing 'style' only outside of defs, but skip inside defs
-		return [];
+		return ['style'];
 	}
 	if (!Array.isArray(attrs)) return [];
 	// Exclude 'style' to preserve gradient stops and fills

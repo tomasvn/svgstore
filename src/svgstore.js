@@ -134,32 +134,33 @@ function svgstore(options) {
 					var elem = child(_elem);
 					var oldDefId = elem.attr('id');
 					var newDefId = id + '_' + oldDefId;
+					var oldHref = '#' + oldDefId;
+					var newHref = '#' + newDefId;
+					var oldUrl = 'url(' + oldHref + ')';
+					var newUrl = 'url(' + newHref + ')';
 					elem.attr('id', newDefId);
 
-					/* process use tags */
-					child('use').each(function (i, use) {
-						var hrefLink = '#' + oldDefId;
-						var checkableProperties = ['xlink:href', 'href'];
-						var foundProperty;
-						for (var j = 0; j < checkableProperties.length; j++) {
-							var currentProperty = checkableProperties[j];
-							if (child(use).prop(currentProperty) === hrefLink) {
-								foundProperty = currentProperty;
-								break;
-							}
-						}
-						if (!foundProperty) {
-							return;
-						}
-						child(use).attr(foundProperty, '#' + newDefId);
-					});
+					child('*').each(function (i, refElem) {
+						var ref = child(refElem);
+						var attrs = refElem.attribs || {};
+						Object.keys(attrs).forEach(function (attr) {
+							var originalValue = attrs[attr];
+							var value = originalValue;
+							if (typeof value !== 'string') return;
 
-					/* process fill attributes */
-					child('[fill="url(#' + oldDefId + ')"]').each(function (
-						i,
-						use
-					) {
-						child(use).attr('fill', 'url(#' + newDefId + ')');
+							if (
+								(attr === 'href' || attr === 'xlink:href') &&
+								value === oldHref
+							) {
+								value = newHref;
+							}
+
+							if (value.indexOf(oldUrl) !== -1) {
+								value = value.split(oldUrl).join(newUrl);
+							}
+
+							if (value !== originalValue) ref.attr(attr, value);
+						});
 					});
 				});
 			}
