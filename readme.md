@@ -6,9 +6,10 @@ Combines multiple SVG files into one using `<symbol>` elements which you may [`<
 
 ## NOTE
 
--   This is only a fork of original work, it implements this [PR #33](https://github.com/svgstore/svgstore/pull/33) from original work
--   Adds linear gradient proccessing
--   **NOT MAINTAINED**
+<blockquote>
+    <strong>NOTE:</strong> This is a fork of original work, released with patched fixes <br />
+    SEE: <a href="./CHANGELOG.md">Changelog</a>
+</blockquote>
 
 ## Install
 
