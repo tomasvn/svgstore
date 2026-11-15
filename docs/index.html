@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Documentation and examples for svgstore, a tool for combining SVG files into a sprite.">
+	<title>svgstore documentation</title>
+	<style>
+		:root {
+			color-scheme: light;
+			font-family: system-ui, sans-serif;
+			color: #20232a;
+			background: #f7f8fa;
+		}
+		body {
+			box-sizing: border-box;
+			max-width: 760px;
+			margin: 0 auto;
+			padding: 4rem 1.5rem;
+			line-height: 1.6;
+		}
+		h1, h2 {
+			line-height: 1.2;
+		}
+		a {
+			color: #0969da;
+		}
+		code {
+			padding: 0.15rem 0.35rem;
+			border-radius: 4px;
+			background: #e9edf2;
+		}
+		pre {
+			overflow-x: auto;
+			padding: 1rem;
+			border-radius: 6px;
+			background: #20232a;
+			color: #f7f8fa;
+		}
+		pre code {
+			padding: 0;
+			background: none;
+			color: inherit;
+		}
+		nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-top: 2rem;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>svgstore</h1>
+		<p>Combine multiple SVG files into one sprite using <code>&lt;symbol&gt;</code> elements.</p>
+
+		<h2>Quick start</h2>
+		<p>Install the package and add SVG files to a sprite:</p>
+		<pre><code>npm install @tomasvn/svgstore</code></pre>
+		<pre><code>const svgstore = require('@tomasvn/svgstore');
+const fs = require('fs');
+
+const sprite = svgstore()
+  .add('icon', fs.readFileSync('./icon.svg', 'utf8'));
+
+fs.writeFileSync('./sprite.svg', sprite);</code></pre>
+
+		<nav aria-label="Documentation links">
+			<a href="examples/">View the examples</a>
+			<a href="https://github.com/tomasvn/svgstore#api">API reference</a>
+			<a href="https://github.com/tomasvn/svgstore">GitHub repository</a>
+		</nav>
+	</main>
+</body>
+</html>
