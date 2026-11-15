@@ -1,6 +1,6 @@
 {
   "name": "@tomasvn/svgstore",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "Combines mulitple svg files into one.",
   "scripts": {
     "lint": "npx eslint --fix \"{src,test}/**/*.js\" && npx prettier --write \"{src,test}/**/*.js\"",
@@ -33,7 +33,7 @@
       "url": "https://github.com/BrianSipple"
     }
   ],
-  "homepage": "https://github.com/@tomasvn/svgstore#readme",
+  "homepage": "https://tomasvn.github.io/svgstore/",
   "repository": "tomasvn/svgstore",
   "license": "MIT",
   "main": "src/svgstore.js",

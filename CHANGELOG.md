@@ -1,5 +1,9 @@
 # Changelog
 
+# 3.1.6
+
+- update homepage field with documentation
+
 # 3.1.5
 
 - Deployed docs site
