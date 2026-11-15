@@ -1,5 +1,9 @@
 # Changelog
 
+# 3.1.5
+
+- Deployed docs site
+
 # 3.1.4
 
     - Closes [#36][https://github.com/svgstore/svgstore/issues/36]

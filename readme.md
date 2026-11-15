@@ -13,7 +13,7 @@ Combines multiple SVG files into one using `<symbol>` elements which you may [`<
 
 ## Documentation
 
-Visit the [svgstore documentation site](https://tomasvn.github.io/svgstore/) for a quick start and examples. The site is published from `docs/` whenever changes are pushed to `master`. To enable deployment, set the repository's Pages source to **GitHub Actions** in Settings > Pages.
+Visit the [svgstore documentation site](https://tomasvn.github.io/svgstore/) for a quick start and examples.
 
 ## Install
 
